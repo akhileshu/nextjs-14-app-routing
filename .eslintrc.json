@@ -1,0 +1,9 @@
+// .eslintrc
+{
+  "extends": ["next", "next/core-web-vitals"],
+  "parserOptions": {
+    "babelOptions": {
+      "presets": ["next/babel"]
+    }
+  }
+}
