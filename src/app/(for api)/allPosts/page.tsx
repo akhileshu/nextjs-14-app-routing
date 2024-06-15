@@ -12,12 +12,15 @@ function page() {
     </div>
   );
 }
+const fetchData = async () => {
+  const res = await fetch("http://localhost:3000/api/allPosts");
+  const { error, posts } = await res.json();
+  if (!res.ok) throw new Error(error || "something went wrong");
+  return posts;
+};
 
-const FetchPosts = () => {
-  const { posts } = use(
-    fetch("http://localhost:3000/api/allPosts").then((r) => r.json())
-  );
-
+const FetchPosts = async () => {
+  const posts = await fetchData();
   return (
     <div>
       {posts.slice(0, 5).map((post, id) => {
@@ -35,3 +38,4 @@ const FetchPosts = () => {
 };
 
 export default page;
+export const revalidate = 0;
